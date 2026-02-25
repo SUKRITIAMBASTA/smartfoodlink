@@ -1,0 +1,21 @@
+{
+  "name": "smartfoodlink-server",
+  "version": "1.0.0",
+  "description": "SmartFoodLink — Real-time food redistribution platform backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["food", "redistribution", "donation", "ngo"],
+  "author": "SmartFoodLink Team",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.10.1"
+  }
+}

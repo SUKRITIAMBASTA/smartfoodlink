@@ -1,0 +1,5 @@
+# SmartFoodLink Prototype
+node_modules/
+.env
+.env.example
+*.log

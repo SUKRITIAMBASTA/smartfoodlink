@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Dashboard — SmartFoodLink</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">🍃 Smart<span>FoodLink</span></div>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-section="overview">📊 Overview</a>
+                <a href="#" class="sidebar-link" data-section="post-food">➕ Post Food</a>
+                <a href="#" class="sidebar-link" data-section="my-listings">📋 My Listings</a>
+                <a href="map.html" class="sidebar-link">🗺️ Live Map</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div style="font-size:.85rem;color:var(--clr-text-muted);margin-bottom:.5rem;" id="user-name">Donor
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="logout()"
+                    style="width:100%;justify-content:center;">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main-content">
+            <button class="navbar-toggle" id="sidebar-toggle" style="margin-bottom:1rem;">☰</button>
+
+            <!-- Overview Section -->
+            <div id="section-overview">
+                <div class="page-header">
+                    <div>
+                        <h1>Welcome back, <span id="donor-name">Donor</span>! 👋</h1>
+                        <p>Here's an overview of your food donations</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="showSection('post-food')">➕ Post New Food</button>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-icon green">📦</div>
+                        <h3 id="total-posted">0</h3>
+                        <p>Total Posted</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue">✅</div>
+                        <h3 id="total-claimed">0</h3>
+                        <p>Claimed</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">⏳</div>
+                        <h3 id="total-active">0</h3>
+                        <p>Active Listings</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red">🚚</div>
+                        <h3 id="total-delivered">0</h3>
+                        <p>Delivered</p>
+                    </div>
+                </div>
+
+                <div class="data-table-wrapper">
+                    <div class="data-table-header">
+                        <h2>Recent Listings</h2>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Food Item</th>
+                                <th>Quantity</th>
+                                <th>Expires</th>
+                                <th>Status</th>
+                                <th>Posted</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-listings-body">
+                            <tr>
+                                <td colspan="5">
+                                    <div class="spinner"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Post Food Section -->
+            <div id="section-post-food" style="display:none;">
+                <div class="page-header">
+                    <div>
+                        <h1>Post Surplus Food</h1>
+                        <p>Share your surplus food with those in need</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="showSection('overview')">← Back</button>
+                </div>
+
+                <div class="glass-card" style="max-width:640px;">
+                    <div id="post-alert" class="alert"></div>
+
+                    <form id="post-food-form">
+                        <div class="form-group">
+                            <label for="food-title">Food Title *</label>
+                            <input type="text" id="food-title" class="form-control"
+                                placeholder="e.g. Rice & Dal, 50 meals" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="food-desc">Description</label>
+                            <textarea id="food-desc" class="form-control" rows="3"
+                                placeholder="Details about the food, dietary info, etc."></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="food-qty">Quantity *</label>
+                                <input type="text" id="food-qty" class="form-control" placeholder="e.g. 10 kg, 50 meals"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="food-category">Category</label>
+                                <select id="food-category" class="form-control">
+                                    <option value="cooked">Cooked</option>
+                                    <option value="raw">Raw</option>
+                                    <option value="packaged">Packaged</option>
+                                    <option value="beverages">Beverages</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="food-expiry">Pickup Before *</label>
+                                <input type="datetime-local" id="food-expiry" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="food-phone">Contact Phone</label>
+                                <input type="tel" id="food-phone" class="form-control" placeholder="+91 ...">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="food-address">Pickup Address *</label>
+                            <input type="text" id="food-address" class="form-control"
+                                placeholder="Street address, landmark, city" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="food-lat">Latitude</label>
+                                <input type="number" step="any" id="food-lat" class="form-control"
+                                    placeholder="e.g. 28.6139">
+                            </div>
+                            <div class="form-group">
+                                <label for="food-lng">Longitude</label>
+                                <input type="number" step="any" id="food-lng" class="form-control"
+                                    placeholder="e.g. 77.2090">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-outline btn-sm" onclick="getMyLocation()"
+                            style="margin-bottom:1rem;">📍 Use My Location</button>
+
+                        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;"
+                            id="post-btn">
+                            Post Food Donation
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- My Listings Section -->
+            <div id="section-my-listings" style="display:none;">
+                <div class="page-header">
+                    <div>
+                        <h1>My Listings</h1>
+                        <p>Manage all your food donations</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="showSection('post-food')">➕ Post New</button>
+                </div>
+                <div id="my-listings-grid" class="food-grid">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/donor.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — SmartFoodLink</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">🍃 Smart<span>FoodLink</span></div>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-section="overview">📊 Overview</a>
+                <a href="#" class="sidebar-link" data-section="users">👥 Users</a>
+                <a href="#" class="sidebar-link" data-section="listings">📋 All Listings</a>
+                <a href="map.html" class="sidebar-link">🗺️ Live Map</a>
+                <a href="index.html" class="sidebar-link">🏠 Home</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div style="font-size:.85rem;color:var(--clr-text-muted);margin-bottom:.5rem;" id="user-name">Admin
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="logout()"
+                    style="width:100%;justify-content:center;">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main-content">
+            <button class="navbar-toggle" id="sidebar-toggle" style="margin-bottom:1rem;">☰</button>
+
+            <!-- Overview -->
+            <div id="section-overview">
+                <div class="page-header">
+                    <div>
+                        <h1>Admin Dashboard 🛡️</h1>
+                        <p>Platform overview and management</p>
+                    </div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-icon green">👥</div>
+                        <h3 id="stat-total-users">—</h3>
+                        <p>Total Users</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue">🍽️</div>
+                        <h3 id="stat-total-donors">—</h3>
+                        <p>Donors</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">🤝</div>
+                        <h3 id="stat-total-ngos">—</h3>
+                        <p>NGOs</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">📦</div>
+                        <h3 id="stat-total-listings">—</h3>
+                        <p>Total Listings</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue">🟢</div>
+                        <h3 id="stat-active">—</h3>
+                        <p>Active</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red">🚚</div>
+                        <h3 id="stat-delivered">—</h3>
+                        <p>Delivered</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Section -->
+            <div id="section-users" style="display:none;">
+                <div class="page-header">
+                    <div>
+                        <h1>User Management</h1>
+                        <p>View and manage all registered users</p>
+                    </div>
+                </div>
+
+                <div class="data-table-wrapper">
+                    <div class="data-table-header">
+                        <h2>All Users</h2>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Phone</th>
+                                <th>Joined</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <tr>
+                                <td colspan="6">
+                                    <div class="spinner"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Listings Section -->
+            <div id="section-listings" style="display:none;">
+                <div class="page-header">
+                    <div>
+                        <h1>All Food Listings</h1>
+                        <p>View all donations across the platform</p>
+                    </div>
+                </div>
+                <div id="admin-listings-grid" class="food-grid">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
